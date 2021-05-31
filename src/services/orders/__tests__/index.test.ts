@@ -110,6 +110,31 @@ describe('services/orders', () => {
       await createSampleData();
       await DiscountRule.query().insert([
         {
+          productCode: 'PC',
+          type: DiscountType.BULK,
+          quantity: 3,
+          discount: 20,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ]);
+
+      const { total } = await ordersService.estimateOrderTotal([
+        'CC',
+        'CC',
+        'PC',
+        'PC',
+        'PC',
+        'WA',
+      ]);
+      expect(total).toEqual(8.65);
+    });
+
+    it('estimate total with applying different types of discount', async () => {
+      const ordersService = createMockedOrdersService();
+      await createSampleData();
+      await DiscountRule.query().insert([
+        {
           productCode: 'CC',
           type: DiscountType.BOGOF,
           quantity: 0,
@@ -138,31 +163,6 @@ describe('services/orders', () => {
       expect(total).toEqual(7.15);
     });
 
-    it('estimate total with applying different types of discount', async () => {
-      const ordersService = createMockedOrdersService();
-      await createSampleData();
-      await DiscountRule.query().insert([
-        {
-          productCode: 'PC',
-          type: DiscountType.BULK,
-          quantity: 3,
-          discount: 20,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ]);
-
-      const { total } = await ordersService.estimateOrderTotal([
-        'CC',
-        'CC',
-        'PC',
-        'PC',
-        'PC',
-        'WA',
-      ]);
-      expect(total).toEqual(8.65);
-    });
-
     it('fails to estimate total for empty codes list', async () => {
       const ordersService = createMockedOrdersService();
 
@@ -174,7 +174,7 @@ describe('services/orders', () => {
     it('fails to estimate total for non-existings codes', async () => {
       const ordersService = createMockedOrdersService();
 
-      await expect(ordersService.estimateOrderTotal([])).rejects.toThrow(
+      await expect(ordersService.estimateOrderTotal(['WW'])).rejects.toThrow(
         'Invalid codes list',
       );
     });
