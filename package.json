@@ -20,7 +20,16 @@
     ]
   },
   "jest": {
-    "collectCoverage": false,
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.ts",
+      "!**/node_modules/**",
+      "!**/__generated__/**"
+    ],
+    "coverageDirectory": "<rootDir>/test/coverage",
+    "coverageReporters": [
+      "lcov"
+    ],
     "moduleFileExtensions": [
       "ts",
       "js",

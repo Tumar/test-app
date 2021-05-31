@@ -7,3 +7,6 @@ dist
 
 # API keys and secrets
 .env
+
+# Tests coverage
+test/coverage/

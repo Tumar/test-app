@@ -26,6 +26,7 @@ services:
     stdin_open: ${JEST_WATCH-false}
     volumes:
       - ./src:/usr/app/src:delegated
+      - ./test:/usr/app/test:delegated
     env_file:
       - ./.env
     depends_on:
