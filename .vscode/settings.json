@@ -1,0 +1,6 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "prettier.singleQuote": true,
+  "editor.formatOnSave": true,
+  "prettier.trailingComma": "all"
+}

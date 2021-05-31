@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "lib": ["es2017"],
+        "target": "es2017",
+
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+        "paths": {
+            "src/*": ["src/*"],
+            "test/*": ["test/*"],
+        },
+        "typeRoots": [
+            "./node_modules/@types",
+        ],
+    },
+    "include": [
+        "src/**/*.ts",
+        "test/**/*.ts",
+    ]
+}

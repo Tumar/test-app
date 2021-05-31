@@ -1,0 +1,8 @@
+# Packages
+/node_modules/
+
+# Git
+/.git/
+
+# JetBrains IDE
+/.idea/

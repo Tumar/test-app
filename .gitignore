@@ -1,0 +1,9 @@
+# Dependency directory
+node_modules
+dist
+
+# JetBrains IDE
+.idea
+
+# API keys and secrets
+.env
